@@ -1,11 +1,11 @@
 #!/bin/bash
 
-#Checking remote repo for updates and displaying changes waiting to be commited
-git remote update && git status -uno
+#checking remote repo for updates
+git remote -v update
 echo
 
 #Redirecting all the changes to changes.log 
-git diff >> changes.log
+git diff > changes.log
 printf "All changes have been appened to the file changes.log\n"
 echo
 
