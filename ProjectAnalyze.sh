@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "----------------------------------------------------------------"
+echo
+
 #checking remote repo for updates
 git fetch && git status -uno 
 echo
@@ -19,6 +22,11 @@ find . -name "*.hs" -exec ghc -fno-code {} \; 2> error.log
 printf "All the errors in Haskell files have been saved to error.log.\n"
 echo
 
+#Display The last commit with comment
+printf "Your last commit was:\n"
+git show --summary
+echo
+
 #Checking if the course resouces page has been updated
 URL="http://www.cas.mcmaster.ca/~dalvescb/#outline-container-orgd3c9a86"
 if [ ! -f old.html ]; then
@@ -31,9 +39,10 @@ if [ "0" != "${#DIFF_OUTPUT}" ]; then
 	read -p 'Would you like to download them now?(Y/N)'$'\n' ans
 	echo
 	case $ans in 
- 	[Yy]* ) wget -r -nd -nc -A pdf -P Resources/ http://www.cas.mcmaster.ca/~dalvescb/#outline-container-orgd3c9a86;
+ 	[Yy]* ) wget -r -nd -q -nc -A pdf -P Resources/ http://www.cas.mcmaster.ca/~dalvescb/#outline-container-orgd3c9a86
   	echo
-  	printf "New PDFs downloaded in Resources.\n";;
+  	printf "New PDFs downloaded in Resources.\n"
+	echo;;
   	[Nn]* ) echo;;
  	esac
 else
@@ -41,3 +50,5 @@ else
 	echo
 fi
 mv new.html old.html 2>/dev/null
+
+echo "----------------------------------------------------------------"
