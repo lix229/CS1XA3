@@ -10,7 +10,7 @@ printf "All changes have been added to changes.log.\n"
 echo
 
 #Seaching for lins with tag #TODO and save them to todo.log
-grep -r --exclude={'ProjectAnalyze.sh','todo.log','changes.log'} '#TODO' * > todo.log
+grep -r --exclude={'ProjectAnalyze.sh','todo.log','changes.log','old.html'} '#TODO' * > todo.log
 printf "TODOs have been loaded into todo.log.\n"
 echo
 
